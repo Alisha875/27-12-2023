@@ -1,0 +1,50 @@
+﻿@model Assignment.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status1.Status1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status1.Status1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Technology1.Technology1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Technology1.Technology1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

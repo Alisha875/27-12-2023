@@ -1,0 +1,26 @@
+﻿@model Assignment.Models.Technology
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Technology</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Technology1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Technology1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

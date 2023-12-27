@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CourseDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CId" />
+    </Key>
+    <Property Name="CId" Type="Int32" Nullable="false" />
+    <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CFee" Type="Double" Nullable="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Technology" Type="Int32" />
+    <NavigationProperty Name="Status1" Relationship="Self.FK__Course__Status__412EB0B6" FromRole="Course" ToRole="Status" />
+    <NavigationProperty Name="Technology1" Relationship="Self.FK__Course__Technolo__4222D4EF" FromRole="Course" ToRole="Technology" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="CId" />
+    </Key>
+    <Property Name="CId" Type="Int32" Nullable="false" />
+    <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Course__Status__412EB0B6" FromRole="Status" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="Technology">
+    <Key>
+      <PropertyRef Name="CId" />
+    </Key>
+    <Property Name="CId" Type="Int32" Nullable="false" />
+    <Property Name="Technology1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Course__Technolo__4222D4EF" FromRole="Technology" ToRole="Course" />
+  </EntityType>
+  <Association Name="FK__Course__Status__412EB0B6">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="CId" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Course__Technolo__4222D4EF">
+    <End Role="Technology" Type="Self.Technology" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technology">
+        <PropertyRef Name="CId" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Technology" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CourseDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="Technologies" EntityType="Self.Technology" />
+    <AssociationSet Name="FK__Course__Status__412EB0B6" Association="Self.FK__Course__Status__412EB0B6">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Course__Technolo__4222D4EF" Association="Self.FK__Course__Technolo__4222D4EF">
+      <End Role="Technology" EntitySet="Technologies" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
